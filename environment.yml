@@ -1,4 +1,4 @@
-name: poster-template
+name: agu-2024-poster
 channels:
 - conda-forge
 dependencies:
