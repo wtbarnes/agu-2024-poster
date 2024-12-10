@@ -20,10 +20,11 @@
 \pgfplotsset{compat=1.14}
 \usepackage{anyfontsize}
 \usepackage{multicol}
-\usepackage[authoryear]{natbib}
+\usepackage[numbers]{natbib}
 \usepackage{import}
 \usepackage{siunitx}
 \usepackage{float}
+\usepackage{xcolor}
 
 % ====================
 % Lengths
@@ -36,6 +37,20 @@
 \setlength{\sepwidth}{0.01\paperwidth}
 \setlength{\colwidth}{0.32\paperwidth}
 \newcommand{\separatorcolumn}{\begin{column}{\sepwidth}\end{column}}
+
+% ====================
+% Colors
+% ====================
+\definecolor{C0}{HTML}{1f77b4}
+\definecolor{C1}{HTML}{ff7f0e}
+\definecolor{C2}{HTML}{2ca02c}
+\definecolor{C3}{HTML}{d62728}
+\definecolor{C4}{HTML}{9467bd}
+\definecolor{C5}{HTML}{8c564b}
+
+% ====================
+% Custom Commands
+% ====================
 % This is to work around a bug in matplotlib that leaves a command undefined when
 % using pgf figures: https://github.com/matplotlib/matplotlib/issues/27907
 \def\mathdefault#1{\displaystyle #1}
@@ -90,62 +105,77 @@
       \item Heating frequency: \alert{frequency at which elemental strands in the corona are reenergized}
       \begin{itemize}
         \item High frequency (HF): waiting time between successive events less than a loop cooling time
-        \item Low frequency (LF): waitign time between successive events greater than a loop cooling time
+        \item Low frequency (LF): waiting time between successive events greater than a loop cooling time
       \end{itemize}
-      \item \alert{Heating frequency is variable over an active region} \citep[e.g.][]{del_zanna_evolution_2015,barnes_understanding_2021}
+      \item \alert{Heating frequency is variable over an active region (AR)} \citep[e.g.][]{del_zanna_evolution_2015,barnes_understanding_2021}
       \begin{itemize}
         \item Warm, periphery loops exhibit low-frequency heating \citep[e.g.][]{warren_evolving_2003}
         \item Hot, core loops more consistent with high-frequency heating \citep[e.g.][]{warren_evidence_2010}
       \end{itemize}
-      \item \alert{Active region properties evolve with age:} ``very hot'' emission \citep{ugarte-urra_is_2012,ugarte-urra_determining_2014}, abundance \citep{testa_coronal_2023}, density and temperature \citep{ko_correlation_2016}
-      \item \textbf{Goal:} Understand how the distribution of heating frequencies in an active region evolves with age
+      \item \alert{AR properties evolve with age:} ``very hot'' emission \citep{ugarte-urra_is_2012,ugarte-urra_determining_2014}, abundance \citep{testa_coronal_2023}, $T$ and $n$ \citep{ko_correlation_2016}
+      \item \alert{\textbf{Goal:}} Understand how the distribution of heating frequencies in an AR evolves with age
     \end{itemize}
 
   \end{block}
 
+  \vspace{-30pt}
+
   \begin{block}{NOAA Active Regions 11944, 11967, and 11990}
-
-    Nam vulputate nunc felis, non condimentum lacus porta ultrices. Nullam sed
-    sagittis metus. Etiam consectetur gravida urna quis suscipit.
-
-    Eget augue porta, bibendum venenatis tortor.
 
     \begin{figure}
       \centering
       \import{figures/}{aia_context.pgf}
-      \caption{Context images for the active region over three rotations.} 
+      \caption{Full-disk SDO AIA 171 \AA\, context images showing the AR across all three rotations denoted by \textcolor{C0}{R1}, \textcolor{C1}{R2}, and \textcolor{C2}{R3}. The solid boxes denote the AR as it appeared at disk center at each rotation. The dashed boxes denote the field of view of the \textit{Hinode} EIS raster closest to the time when the AR appeared at disk center.}
       \label{fig:aia_context}
     \end{figure}
 
-  \heading{AIA Observations}
-
-    This block catches your eye, so \textbf{important stuff} should probably go
-    here.
+    \vspace{-35pt}
   
     \begin{figure}
       \centering
       \import{figures/}{aia_cutouts.pgf}
-      \caption{Cutouts for the active region over all three rotations in each AIA EUV channel.} 
+      \caption{AR cutouts over all three rotations (rows) in each of the six AIA EUV channels (columns). The AR is tracked $\pm6$ h of when it appeared at disk center at a cadence of 30 s. Each cutout in each channel is reprojected to the HPC coordinate frame corresponding to when the AR appeared at disk center. Each image is also normalized by the exposure time and corrected for instrument degradation. As in Fig. \autoref{fig:aia_context}, the dashed lines denote the EIS FOV.} 
       \label{fig:aia_cutouts}
     \end{figure}
 
-  \heading{EIS Observations}
+    \vspace{-35pt}
 
-    \begin{itemize}
-      \item \textbf{Sed consequat} id ante vel efficitur. Praesent congue massa
-        sed est scelerisque, elementum mollis augue iaculis.
-      \item \textbf{Sed luctus, elit sit amet} dictum maximus, diam dolor
-        faucibus purus, sed lobortis justo erat id turpis.
-      \item \textbf{Pellentesque facilisis dolor in leo} bibendum congue.
-        Maecenas congue finibus justo, vitae eleifend urna facilisis at.
-    \end{itemize}
-
-    \begin{figure}
-      \centering
-      \import{figures/}{eis_rasters.pgf}
-      \caption{EIS raster scans that coincide with the AR cutouts shown above.} 
-      \label{fig:eis_rasters}
-    \end{figure}
+    \begin{columns}[t]
+      \begin{column}{0.4\colwidth}
+        \begin{table}
+          \begin{tabular}{ccc}
+            \toprule
+            Ion & Wavelength [\AA] & $T_\mathrm{max}$ $[\mathrm{MK}]$ \\
+            \midrule
+            Si VII & 275.368 & 0.6 \\
+            Fe X & 184.536 & 1.1 \\
+            Si X & 258.375 & 1.4 \\
+            Fe XI	& 180.401	& 1.4 \\
+            Fe XI	& 188.216	& 1.4 \\
+            Fe XII & 192.394 & 1.6 \\
+            Fe XII & 195.119 & 1.6 \\
+            Fe XIII	& 202.044	& 1.8 \\
+            Fe XIII & 203.826	& 1.8 \\
+            Fe XIV & 264.787 & 2.0 \\
+            Fe XIV & 270.519 & 2.0 \\
+            Fe XV	& 284.160	& 2.2 \\
+            Ca XIV & 193.874 & 3.6 \\
+            Ca XV	& 200.972	& 4.5 \\
+            \bottomrule
+          \end{tabular}
+          \label{tab:eis_lines}
+          \caption{List of spectral lines fit in each EIS raster. $T_\mathrm{max}$ is the temperature at which the contribution function is maximized.}
+        \end{table} 
+      \end{column}
+      \begin{column}{0.6\colwidth}
+        \begin{figure}
+          \centering
+          \import{figures/}{eis_rasters.pgf}
+          \caption{Fe XII 195.119 \AA\, intensity as derived from fitting each pixel of the EIS raster scan for each rotation. Pixels in which a fit could not be computed are masked white. This same procedure is applied for each spectral line in Table \autoref{tab:eis_lines}.} 
+          \label{fig:eis_rasters}
+        \end{figure}
+      \end{column}
+    \end{columns}
   
   \end{block}
 
@@ -156,27 +186,25 @@
   \begin{block}{Masking Out Flaring Regions}
 
     \begin{columns}[c]
-      \begin{column}{0.5\colwidth}
+      \begin{column}{0.4\colwidth}
         \begin{figure}
           \centering
           \import{figures/}{time_lag_mask.pgf}
-          \caption{Examples of time lag maps and intensity map with a flare mask applied.} 
+          \caption{Time lag maps of the 211-131 (top) and 193-131 (middle) channel pairs. Large negative time lags correspond to flaring regions in the AR as denoted in the masked 94 \AA\, image of \textcolor{C0}{R1} (bottom).} 
           \label{fig:flare_masked_maps}
         \end{figure}
       \end{column}
-      \begin{column}{0.5\colwidth}
-        \begin{enumerate}
-          \item \textbf{Morbi mauris purus}, egestas at vehicula et, convallis
-            accumsan orci. Orci varius natoque penatibus et magnis dis parturient
-            montes, nascetur ridiculus mus.
-          \item \textbf{Cras vehicula blandit urna ut maximus}. Aliquam blandit nec
-            massa ac sollicitudin. Curabitur cursus, metus nec imperdiet bibendum,
-            velit lectus faucibus dolor, quis gravida metus mauris gravida turpis.
-        \end{enumerate}
+      \begin{column}{0.6\colwidth}
+        \begin{itemize}
+          \item \textcolor{C0}{R1} and \textcolor{C1}{R2} produced many C-class flares
+          \item ``Hot'' 131 \AA\, channel contribution from Fe XXI 128.72 \AA\,
+          \item Negative 131 time lags most likely in flaring regions
+          \item Mask regions with long, negative ($< -2500$ s) 211-131 and 193-131 time lags with high cross-correlation ($\ge0.25$)
+        \end{itemize}
         \begin{figure}
           \centering
           \import{figures/}{ebtel_timelag_simulation.pgf}
-          \caption{\texttt{EBTEL} simulation of flare- and nanoflare-like events. The top panel shows the temperature and intensity for the 131, 193, and 211 Å channels for each event. The bottom panel shows the cross-correlation curves for two channel pairs.} 
+          \caption{Simulated flare- and nanoflare-like events illustrate correspondence between time lag sign and event magnitude. The top panel shows the temperature (black) and intensity for the \textcolor{C3}{131}, \textcolor{C4}{193}, and \textcolor{C5}{211} \AA\, channels for each event. The bottom panel shows the cross-correlation curves for two channel pairs. The higher-energy flare-like event produces negative time lags in both channel pairs while the  lower-energy nanoflare-like event produces positive time lags.} 
           \label{fig:ebtel_timelag}
         \end{figure}
       \end{column}
@@ -184,21 +212,38 @@
 
   \end{block}
 
-  \begin{block}{Emission Measure Distributions}
+  \vspace{-35pt}
+
+  \begin{block}{Emission Measure Slopes}
 
     \begin{figure}
       \centering
       \import{figures/}{em_slope_map.pgf}
-      \caption{Emission measure slope in each pixel of the AR over all three rotations as determined from the DEM derived from the six AIA EUV channels.} 
+      \caption{$\mathrm{EM}$ slope, $a$, in each pixel of the AIA cutouts for all three rotations. The $\mathrm{EM}$ is computed from the six EUV AIA channels at the time closest to the midpoint of the EIS raster. Pixels with $r^2<0.7$ are masked white. All rotations show higher $a$ closer to the center of the AR.} 
       \label{fig:em_slope_map}
     \end{figure}
 
-    \begin{figure}
-      \centering
-      \import{figures/}{emslope_distribution.pgf}
-      \caption{Emission measure slope distributions for the AIA FOV (left) and the EIS FOV (right). The dashed distributions in the right panel are the slopes calculated from the DEM derived from the fitted EIS spectra.} 
-      \label{fig:emslope_distribution}
-    \end{figure}
+    \vspace{-35pt}
+
+    \begin{columns}[c]
+      \begin{column}{0.4\colwidth}
+        \begin{itemize}
+          \item Apply EM inversion method of \citet{hannah_differential_2012} to each pixel in EIS raster, AIA cutouts at time closest to EIS raster midpoint.
+          \item For $T\le T_\mathrm{peak}$, $\mathrm{EM}\sim T^a$---$a$ is the \alert{EM slope} \citep{jordan_structure_1975}
+          \item Expect $2\lesssim a\lesssim2.5$ for uninterrupted radiative cooling \citep{cargill_implications_1994}
+          \item \alert{Larger $a$---HF heating; smaller $a$---LF heating}
+          \item Fit $T^a$ over $0.9\le T\le 3$ MK in each pixel of the AIA cutouts, EIS rasters, and AIA cutouts aligned to the EIS rasters.
+        \end{itemize}
+      \end{column}
+      \begin{column}{0.6\colwidth}
+        \begin{figure}
+          \centering
+          \import{figures/}{emslope_distribution.pgf}
+          \caption{Distributions of $a$ for the AIA FOV (left) and the EIS FOV (right) derived from the $\mathrm{EM}$ computed using the six EUV AIA channels. The dashed distributions of $a$ in the right panel are derived from the $\mathrm{EM}$ computed using the lines observed by EIS shown in Table \autoref{tab:eis_lines}.} 
+          \label{fig:emslope_distribution}
+        \end{figure}
+      \end{column}
+    \end{columns}
 
   \end{block}
 
@@ -210,34 +255,48 @@
 
   \begin{block}{Time Lag Analysis}
 
+    \begin{itemize}
+      \item Compute cross-correlation between 12 h intensity time series of pairs of AIA channels \citep{viall_evidence_2012}.
+      \item Offset which maximizes the cross-correlation is the \alert{time lag---proxy for cooling time between characteristic temperature of each channel}.
+      \item Order channel pairs such that a \alert{positive time lag implies cooling plasma}.
+    \end{itemize}
+
+    \vspace{-20pt}
+
     \begin{figure}
       \centering
       \import{figures/}{timelag_maps.pgf}
-      \caption{Time lag in each pixel of each active region for four different channel pairs.}
+      \caption{Maps showing the time lag in each pixel for four different channel pairs (columns) for all three rotations (rows). Pixels which have a cross-correlation coefficient $<0.25$ are masked white.}
       \label{fig:timelag_maps}
     \end{figure}
+
+    \vspace{-35pt}
 
     \begin{figure}
       \centering
       \import{figures/}{timelag_distribution.pgf}
-      \caption{Distributions of time lags for four different channel pairs for the active region over all three rotations.}
+      \caption{Distributions of time lags from the maps shown in Fig. \autoref{fig:timelag_maps}, excluding masked values. \textcolor{C1}{R2} and \textcolor{C2}{R3} show more positive time lags in cooler channel pairs (211--171, 193--171) while \textcolor{C2}{R3} shows more negative values in bimodal channel pairs (94--211,335--193). \textcolor{C0}{R1} and \textcolor{C1}{R2} show more positive values in bimodal channel pairs. Collectively, this implies that \alert{older ARs are more likely to have cooling at lower temperatures and less likely to have high-temperature plasma.}}
       \label{fig:timelag_distribution}
     \end{figure}
 
   \end{block}
 
+  \vspace{-35pt}
+
   \begin{block}{Conclusions}
 
     \begin{itemize}
-      \item Identified active region across \alert{three rotations} in both Hinode/EIS and SDO/AIA
+      \item Identified active region across \alert{three rotations} in both \textit{Hinode}/EIS and SDO/AIA
       \item Computed \alert{time lags} and \alert{emission measure slopes} across active region for each rotation
-      \item Later rotations show \alert{narrower emission measure slope distribution with lower peak}
+      \item Later rotations show \alert{narrower emission measure slope distribution}
       \item \alert{More positive time lags} in cooler channels at later rotations, but \alert{more negative time lags} in pairs that include a bimodal channel with a hot component
       \item Preliminary results imply \alert{less frequent, less energetic events as active region ages}
       \item \alert{Future:} comparisons with magnetic properties, correlations with doppler shifts and widths, apply to more active regions
     \end{itemize}
 
   \end{block}
+
+  \vspace{-35pt}
 
   \begin{block}{References}
     \scriptsize
